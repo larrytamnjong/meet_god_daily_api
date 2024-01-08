@@ -14,11 +14,11 @@ class User
     private $table = "users";
     private $password_manager;
 
-    public $id;
-    public $full_name;
-    public $phone;
-    public $password;
-    public $date_of_creation;
+    private $id;
+    private $full_name;
+    private $phone;
+    private $password;
+    private $creation_date;
 
    
     public function __construct($database_connection, $password_manager)
@@ -37,7 +37,7 @@ class User
 
             
          
-            $query = 'INSERT INTO ' . $this->table . ' SET full_name = :full_name, phone = :phone, password = :password,  date_of_creation = NOW()';
+            $query = 'INSERT INTO ' . $this->table . ' SET full_name = :full_name, phone = :phone, password = :password,  creation_date = NOW()';
 
             $statement = $this->connection->prepare($query);
             $statement->bindValue('full_name', $this->full_name);
@@ -60,7 +60,7 @@ class User
             $entered_password = $login_information['password'];
     
            
-            $query = 'SELECT id, full_name, phone, password  FROM ' . $this->table . ' WHERE phone = :phone';
+            $query = 'SELECT id, full_name, phone, password, creation_date  FROM ' . $this->table . ' WHERE phone = :phone';
             $statement = $this->connection->prepare($query);
             $statement->bindValue('phone', $entered_phone);
             $statement->execute();
@@ -72,7 +72,8 @@ class User
                     return [
                         'id' => $user['id'],
                         'full_name' => $user['full_name'],
-                        'phone' => $user['phone']
+                        'phone' => $user['phone'],
+                        'creation_date' => $user['creation_date']
                     ];
                 } else {
                     return false;

@@ -35,6 +35,7 @@ if(count($_POST))
     
     if($user->create_user($params))
     {
+        http_response_code(200);
         echo json_encode(array('message' => 'user created'));
     }else{
         http_response_code(500);
