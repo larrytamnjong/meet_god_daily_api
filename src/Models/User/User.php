@@ -21,7 +21,7 @@ class User
     private $password;
     private $creation_date;
 
-   
+
     public function __construct($database_connection, $password_manager)
     {
         $this->connection = $database_connection;
@@ -30,15 +30,15 @@ class User
 
     public function create_user($user)
     {
-       
+
         try {
             $this->full_name = $user['full_name'];
             $this->phone = $user['phone'];
             $this->password = $this->password_manager->encrypt($user['password']);
             $this->email = $user['email'];
 
-            
-         
+
+
             $query = 'INSERT INTO ' . $this->table . ' SET full_name = :full_name, phone = :phone, email = :email, password = :password,  creation_date = NOW()';
 
             $statement = $this->connection->prepare($query);
@@ -46,7 +46,7 @@ class User
             $statement->bindValue('phone', $this->phone);
             $statement->bindValue('email', $this->email);
             $statement->bindValue('password', $this->password);
-            
+
 
             if ($statement->execute()) {
                 return true;
@@ -58,21 +58,22 @@ class User
         }
     }
 
-    public function login_user($login_information){
-        try{
+    public function login_user($login_information)
+    {
+        try {
             $entered_phone = $login_information['phone'];
             $entered_password = $login_information['password'];
-    
-           
-            $query = 'SELECT id, full_name, phone, password, creation_date  FROM ' . $this->table . ' WHERE phone = :phone';
+
+
+            $query = 'SELECT id, full_name, phone, email, password, creation_date  FROM ' . $this->table . ' WHERE phone = :phone';
             $statement = $this->connection->prepare($query);
             $statement->bindValue('phone', $entered_phone);
             $statement->execute();
             $user = $statement->fetch(\PDO::FETCH_ASSOC);
-    
-            if($user) {
+
+            if ($user) {
                 $stored_password = $user['password'];
-                if($this->password_manager->check($entered_password, $stored_password)) {
+                if ($this->password_manager->check($entered_password, $stored_password)) {
                     return [
                         'id' => $user['id'],
                         'full_name' => $user['full_name'],
@@ -86,10 +87,39 @@ class User
             } else {
                 return false;
             }
-        } catch (\PDOException $ex){
-           echo $ex->getMessage();
-           return false;
+        } catch (\PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
         }
     }
-    
+
+    public function get_user_by_id($id)
+    {
+
+        $this->id = $id;
+        
+        try {
+
+            $query = 'SELECT id, full_name, phone, creation_date  FROM ' . $this->table . ' WHERE id = :id';
+            $statement = $this->connection->prepare($query);
+            $statement->bindValue('id', $this->id);
+            $statement->execute();
+            $user = $statement->fetch(\PDO::FETCH_ASSOC);
+
+            if ($user) {
+                return [
+                    'id' => $user['id'],
+                    'full_name' => $user['full_name'],
+                    'phone' => $user['phone'],
+                    'email' => $user['email'],
+                    'creation_date' => $user['creation_date']
+                ];
+            } else {
+                return false;
+            }
+        } catch (\PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
+    }
 }
