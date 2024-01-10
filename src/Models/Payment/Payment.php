@@ -37,7 +37,6 @@ class Payment
 
     $this->payment_processor =  new PaymentProcessor();
     $this->database_connection = $database->connect();
-
   }
 
   public function initiate_payment($user)
@@ -55,28 +54,35 @@ class Payment
 
     $payment = $this->payment_processor->initiate_payment();
     if ($payment) {
+      $this->user_id = $user['id'];
+      $this->tx_ref = $payment->data->tx_ref;
+      $this->amount = '2000';
 
-      try {
-        $this->user_id = $user['id'];
-        $this->tx_ref = $payment->data->tx_ref;
-        $this->amount = '2000';
+      return $this->save_payment_details();
+    } else {
+      return false;
+    }
+  }
 
-        $query = 'INSERT INTO ' . $this->table . ' SET user_id = :user_id, tx_ref = :tx_ref, amount = :amount, creation_date = NOW()';
+  private function save_payment_details()
+  {
 
-        $statement = $this->database_connection->prepare($query);
-        $statement->bindValue('user_id', $this->user_id);
-        $statement->bindValue('tx_ref', $this->tx_ref);
-        $statement->bindValue('amount', $this->amount);
+    try {
+      $query = 'INSERT INTO ' . $this->table . ' SET user_id = :user_id, tx_ref = :tx_ref, amount = :amount, creation_date = NOW()';
 
-        if ($statement->execute()) {
-          return true;
-        } else {
-          return false;
-        }
-      } catch (\PDOException $ex) {
-        echo $ex->getmessage();
+      $statement = $this->database_connection->prepare($query);
+      $statement->bindValue('user_id', $this->user_id);
+      $statement->bindValue('tx_ref', $this->tx_ref);
+      $statement->bindValue('amount', $this->amount);
+
+      if ($statement->execute()) {
+        return true;
+      } else {
         return false;
       }
+    } catch (\PDOException $ex) {
+      echo $ex->getmessage();
+      return false;
     }
   }
 }
