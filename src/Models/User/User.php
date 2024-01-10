@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Models\User;
+use App\Configuration\Database;
+use App\Commons\Password;
+
 
 
 
@@ -10,9 +13,9 @@ ini_set('display_error', 1);
 
 class User
 {
-    private $connection;
+    private $database_connection;
     private $table = "users";
-    private $password_manager;
+    public $password_manager;
 
     private $id;
     private $full_name;
@@ -22,10 +25,13 @@ class User
     private $creation_date;
 
 
-    public function __construct($database_connection, $password_manager)
+    public function __construct()
     {
-        $this->connection = $database_connection;
-        $this->password_manager = $password_manager;
+        $database = new Database();
+        $this->password_manager = new Password();
+
+        $this->database_connection = $database->connect();
+       
     }
 
     public function create_user($user)
@@ -41,7 +47,7 @@ class User
 
             $query = 'INSERT INTO ' . $this->table . ' SET full_name = :full_name, phone = :phone, email = :email, password = :password,  creation_date = NOW()';
 
-            $statement = $this->connection->prepare($query);
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue('full_name', $this->full_name);
             $statement->bindValue('phone', $this->phone);
             $statement->bindValue('email', $this->email);
@@ -66,7 +72,7 @@ class User
 
 
             $query = 'SELECT id, full_name, phone, email, password, creation_date  FROM ' . $this->table . ' WHERE phone = :phone';
-            $statement = $this->connection->prepare($query);
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue('phone', $entered_phone);
             $statement->execute();
             $user = $statement->fetch(\PDO::FETCH_ASSOC);
@@ -100,8 +106,8 @@ class User
         
         try {
 
-            $query = 'SELECT id, full_name, phone, creation_date  FROM ' . $this->table . ' WHERE id = :id';
-            $statement = $this->connection->prepare($query);
+            $query = 'SELECT id, full_name, phone, email, creation_date  FROM ' . $this->table . ' WHERE id = :id';
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue('id', $this->id);
             $statement->execute();
             $user = $statement->fetch(\PDO::FETCH_ASSOC);

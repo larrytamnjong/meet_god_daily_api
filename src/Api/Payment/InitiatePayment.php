@@ -1,7 +1,7 @@
 <?php
-use App\Configuration\Database;
+
 use App\Models\Payment\Payment;
-use App\Commons\PaymentProcessor;
+
 
 
 error_reporting(E_ALL);
@@ -18,13 +18,24 @@ require_once '../../../vendor/autoload.php';
 
 
 
-
-$database = new Database();
-$payment_processor = new PaymentProcessor();
-$database_connection = $database->connect();
+$payment = new Payment();
 
 
-$payment = new Payment($database_connection, $payment_processor);
+if(count($_POST))
+{
+    $user = [
+       'id' => $_POST['id'],
+       'phone' => $_POST['phone']
+    ];
 
-$payment->initiate_payment();
+    if($payment->initiate_payment($user))
+    {
+        http_response_code(200);
+        echo json_encode(array('message' => 'payment successful'));
+    }else
+    {
+        http_response_code(505);
+        echo json_encode(array('message' => 'payment failure or cancelled'));
+    }
+}
 

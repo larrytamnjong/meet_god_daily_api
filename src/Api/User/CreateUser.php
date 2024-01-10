@@ -11,30 +11,20 @@ require_once '../../../vendor/autoload.php';
 
 
 use App\Models\User\User;
-use App\Configuration\Database;
-use App\Commons\Password;
 
-
-$database = new Database();
-$password_manager = new Password();
-
-
-$database_connection = $database->connect();
-
-
-$user = new User($database_connection, $password_manager);
+$user = new User();
 
 
 if(count($_POST))
 {
-    $params = [
+    $user_details = [
         'full_name' => $_POST['full_name'],
         'phone' => $_POST['phone'],
         'password' => $_POST['password'],
         'email' => $_POST['email']
     ];
     
-    if($user->create_user($params))
+    if($user->create_user($user_details))
     {
         http_response_code(200);
         echo json_encode(array('message' => 'user created'));

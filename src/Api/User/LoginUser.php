@@ -11,18 +11,8 @@ require_once '../../../vendor/autoload.php';
 
 
 use App\Models\User\User;
-use App\Configuration\Database;
-use App\Commons\Password;
 
-
-$database = new Database();
-$password_manager = new Password();
-
-
-$database_connection = $database->connect();
-
-
-$user = new User($database_connection, $password_manager);
+$user = new User();
 
 
 if(count($_POST))

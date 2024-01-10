@@ -8,13 +8,7 @@ class PaymentProcessor
 {
     private $url = 'https://api.flutterwave.com/v3/charges?type=mobile_money_franco';
     public $secret_key = 'FLWSECK_TEST-ef619bc1273084a11e2f8c970512729d-X';
-    public $payer_information =   array(
-        "phone_number" => "237680162416",
-        "amount" => 1500,
-        "currency" => "XAF",
-        "email" => "JoeBloggs@acme.co",
-        "tx_ref" => "BJUYU3998fcdsd4ds903"
-    );
+    public $payer_information; 
 
 
 
@@ -50,9 +44,7 @@ class PaymentProcessor
                 $response = json_decode($response);
 
                 if ($response->status == 'success') {
-
-                    echo $response->status;
-                   // return $response->status;
+                   return $response;
                 } else {
                     return false;
                 }

@@ -1,5 +1,5 @@
 <?php
-use App\Configuration\Database;
+
 use App\Models\DailyDevotion\DailyDevotion;
 
 error_reporting(E_ALL);
@@ -14,12 +14,7 @@ header('Access-Control-Allow-Methods: POST');
 require_once '../../../vendor/autoload.php';
 
 
-
-$database = new Database();
-$database_connection = $database->connect();
-
-
-$devotion = new DailyDevotion($database_connection);
+$devotion = new DailyDevotion();
 
 $todays_devotion = $devotion->get_todays_devotion();
 

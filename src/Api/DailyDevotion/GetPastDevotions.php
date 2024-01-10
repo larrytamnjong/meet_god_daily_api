@@ -1,5 +1,5 @@
 <?php
-use App\Configuration\Database;
+
 use App\Models\DailyDevotion\DailyDevotion;
 
 error_reporting(E_ALL);
@@ -16,12 +16,7 @@ require_once '../../../vendor/autoload.php';
 
 
 
-
-$database = new Database();
-$database_connection = $database->connect();
-
-
-$devotion = new DailyDevotion($database_connection);
+$devotion = new DailyDevotion();
 
 $past_devotions_by_month = $devotion->get_past_devotion_by_month();
 

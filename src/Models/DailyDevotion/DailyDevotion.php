@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Models\DailyDevotion;
+use App\Configuration\Database;
 
 class DailyDevotion
 {
 
-    private $connection;
+    private $database_connection;
     private $table = 'devotions';
 
 
@@ -18,19 +19,19 @@ class DailyDevotion
     private $creation_date;
 
 
-    public function __construct($database_connection)
+    public function __construct()
     {
-        $this->connection = $database_connection;
+        $database = new Database();
+        $this->database_connection = $database->connect();
     }
 
     public function get_past_devotion_by_month()
     {
         try {
             $current_datetime = date('Y-m-d');
-            // $query = 'SELECT * FROM '.$this->table.' WHERE message_date < :current_datetime ORDER BY message_date ASC';
             $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND message_date <  :current_datetime ORDER BY message_date ASC';
 
-            $statement = $this->connection->prepare($query);
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue(':current_datetime', $current_datetime);
             $statement->execute();
             $devotions = $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -57,7 +58,7 @@ class DailyDevotion
         try {
             $today_datetime = date('Y-m-d');
             $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = :today_date';
-            $statement = $this->connection->prepare($query);
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue(':today_date', $today_datetime);
             $statement->execute();
             $devotion = $statement->fetch(\PDO::FETCH_ASSOC);
@@ -74,7 +75,7 @@ class DailyDevotion
         try {
 
             $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = DATE(:devotion_date) AND message_date <=  NOW() ';
-            $statement = $this->connection->prepare($query);
+            $statement = $this->database_connection->prepare($query);
             $statement->bindValue(':devotion_date', $devotion_date);
             $statement->execute();
 
