@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\DailyDevotion;
+namespace App\Models\Devotion;
 use App\Configuration\Database;
 
-class DailyDevotion
+class Devotion
 {
 
     private $database_connection;

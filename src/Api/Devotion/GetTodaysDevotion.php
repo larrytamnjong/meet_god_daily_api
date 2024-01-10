@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\DailyDevotion\DailyDevotion;
+use App\Models\Devotion\Devotion;
 
 error_reporting(E_ALL);
 ini_set('display_error', 1);
@@ -14,7 +14,7 @@ header('Access-Control-Allow-Methods: POST');
 require_once '../../../vendor/autoload.php';
 
 
-$devotion = new DailyDevotion();
+$devotion = new Devotion();
 
 $todays_devotion = $devotion->get_todays_devotion();
 

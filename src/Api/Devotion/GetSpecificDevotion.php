@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\DailyDevotion\DailyDevotion;
+use App\Models\Devotion\Devotion;
 
 error_reporting(E_ALL);
 ini_set('display_error', 1);
@@ -17,7 +17,7 @@ $devotion_date = $_GET['devotion_date'] ?? date('Y-m-d');
 
 
 
-$devotion = new DailyDevotion();
+$devotion = new Devotion();
 
 $specific_devotion = $devotion->get_specific_devotion($devotion_date);
 

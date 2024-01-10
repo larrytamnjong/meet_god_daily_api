@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\DailyDevotion\DailyDevotion;
+use App\Models\Devotion\Devotion;
 
 error_reporting(E_ALL);
 ini_set('display_error', 1);
@@ -16,7 +16,7 @@ require_once '../../../vendor/autoload.php';
 
 
 
-$devotion = new DailyDevotion();
+$devotion = new Devotion();
 
 $past_devotions_by_month = $devotion->get_past_devotion_by_month();
 
