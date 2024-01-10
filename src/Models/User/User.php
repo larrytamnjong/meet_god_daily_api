@@ -120,6 +120,7 @@ class User
                     'email' => $user['email'],
                     'creation_date' => $user['creation_date']
                 ];
+               
             } else {
                 return false;
             }

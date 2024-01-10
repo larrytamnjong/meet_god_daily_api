@@ -5,6 +5,7 @@ namespace App\Models\Payment;
 use App\Models\User\User;
 use App\Configuration\Database;
 use App\Commons\PaymentProcessor;
+use App\Configuration\Settings;
 
 error_reporting(E_ALL);
 ini_set('display_error', 1);
@@ -17,6 +18,7 @@ class Payment
   private $database_connection;
   private $table = 'payments';
   private $payment_processor;
+  private $settings;
   private $user;
 
 
@@ -34,6 +36,7 @@ class Payment
   {
     $database = new Database();
     $this->user = new User();
+    $this->settings = new Settings();
 
     $this->payment_processor =  new PaymentProcessor();
     $this->database_connection = $database->connect();
@@ -44,9 +47,11 @@ class Payment
 
     $user_information = $this->user->get_user_by_id($user['id']);
 
+    $this->payment_processor->secret_key = $this->settings->get_setting('secret_key');
+
     $this->payment_processor->payer_information = array(
       "phone_number" => $user['phone'],
-      "amount" => 2000,
+      "amount" => $this->settings->get_setting('amount'),
       "currency" => "XAF",
       "email" => $user_information['email'],
       "tx_ref" => "BJUYU3998fcdsd4ds9"
@@ -85,4 +90,21 @@ class Payment
       return false;
     }
   }
+
+  public function get_payments_for_year($user_id, $year) {
+    try {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id AND status = "complete" AND YEAR(completion_date) = :year';
+        $statement = $this->database_connection->prepare($query);
+        $statement->bindValue(':user_id', $user_id);
+        $statement->bindValue(':year', $year);
+        $statement->execute();
+
+        $payments = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        
+        return $payments;
+    } catch (\PDOException $ex) {
+        echo $ex->getMessage();
+        return []; 
+    }
+}
 }

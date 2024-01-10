@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Models\Devotion;
+
 use App\Configuration\Database;
+use App\Commons\Billing;
 
 class Devotion
 {
 
     private $database_connection;
     private $table = 'devotions';
+    private $billing;
 
 
     private $bible_verse;
@@ -22,6 +25,7 @@ class Devotion
     public function __construct()
     {
         $database = new Database();
+        $this->billing = new Billing();
         $this->database_connection = $database->connect();
     }
 
@@ -53,19 +57,25 @@ class Devotion
         }
     }
 
-    public function get_todays_devotion()
+    public function get_todays_devotion($user_id)
     {
-        try {
-            $today_datetime = date('Y-m-d');
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = :today_date';
-            $statement = $this->database_connection->prepare($query);
-            $statement->bindValue(':today_date', $today_datetime);
-            $statement->execute();
-            $devotion = $statement->fetch(\PDO::FETCH_ASSOC);
+        $this->billing->user_id = $user_id;
+        
+        if ($this->billing->can_access()) {
+            try {
+                $today_datetime = date('Y-m-d');
+                $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = :today_date';
+                $statement = $this->database_connection->prepare($query);
+                $statement->bindValue(':today_date', $today_datetime);
+                $statement->execute();
+                $devotion = $statement->fetch(\PDO::FETCH_ASSOC);
 
-            return $devotion;
-        } catch (\PDOException $ex) {
-            echo $ex->getMessage();
+                return $devotion;
+            } catch (\PDOException $ex) {
+                echo $ex->getMessage();
+                return false;
+            }
+        } else {
             return false;
         }
     }
@@ -73,7 +83,6 @@ class Devotion
     public function get_specific_devotion($devotion_date)
     {
         try {
-
             $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = DATE(:devotion_date) AND message_date <=  NOW() ';
             $statement = $this->database_connection->prepare($query);
             $statement->bindValue(':devotion_date', $devotion_date);

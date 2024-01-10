@@ -7,7 +7,7 @@ use Exception;
 class PaymentProcessor
 {
     private $url = 'https://api.flutterwave.com/v3/charges?type=mobile_money_franco';
-    public $secret_key = 'FLWSECK_TEST-ef619bc1273084a11e2f8c970512729d-X';
+    public $secret_key;
     public $payer_information; 
 
 

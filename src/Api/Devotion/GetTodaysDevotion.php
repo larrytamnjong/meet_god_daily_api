@@ -16,7 +16,7 @@ require_once '../../../vendor/autoload.php';
 
 $devotion = new Devotion();
 
-$todays_devotion = $devotion->get_todays_devotion();
+$todays_devotion = $devotion->get_todays_devotion($_GET['id']);
 
 
 if($todays_devotion){
