@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 10, 2024 at 06:56 AM
+-- Generation Time: Jan 11, 2024 at 04:08 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.2.0
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `completion_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id_fk` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payments`
@@ -75,7 +75,32 @@ CREATE TABLE IF NOT EXISTS `payments` (
 INSERT INTO `payments` (`id`, `user_id`, `tx_ref`, `amount`, `status`, `creation_date`, `completion_date`) VALUES
 (1, 7, 'BJUYU3998fcdsd4ds903', 2000, 'pending', '2024-01-10 02:14:32', NULL),
 (2, 7, 'BJUYU3998fcdsd4ds903', 2000, 'pending', '2024-01-10 02:23:13', NULL),
-(3, 7, 'BJUYU3998fcdsd4ds9', 2000, 'pending', '2024-01-10 02:33:02', NULL);
+(3, 7, 'BJUYU3998fcdsd4ds9', 2000, 'complete', '2024-01-10 02:33:02', '2023-01-10 20:48:22'),
+(4, 7, 'BJUYU3998fcdsd4ds9', 2000, 'pending', '2024-01-10 06:56:31', NULL),
+(5, 7, 'BJUYU3998fcdsd4ds9', 2000, 'pending', '2024-01-10 18:19:41', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `value` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+(1, 'amount', '2000'),
+(2, 'secret_key', 'FLWSECK_TEST-ef619bc1273084a11e2f8c970512729d-X'),
+(3, 'bonus_days', '2');
 
 -- --------------------------------------------------------
 
@@ -101,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `full_name`, `phone`, `email`, `password`, `creation_date`) VALUES
 (5, 'John Doe', '680162416', '', '$2y$10$BSPgwFJup2pXj6h/5TO9F.ZEUVEymkd96iYtTUU3xtdAwk1UvUEZy', '2024-01-06 18:56:25'),
-(7, 'John Doe', '693536875', 'larrytabeh@gmail.com', '$2y$10$enc5NrYo.8FoUiXh/cq5Uu8qce/OXznt/uUmI4ll81HoV5KvJ256u', '2024-01-09 17:04:27'),
+(7, 'John Doe', '693536875', 'larrytabeh@gmail.com', '$2y$10$enc5NrYo.8FoUiXh/cq5Uu8qce/OXznt/uUmI4ll81HoV5KvJ256u', '2024-01-01 17:04:27'),
 (9, 'John Doe', '693536889', 'larrytabeh@gmail.com', '$2y$10$fuHAf9UNEEvx.w0lcmiVlOpUqKdpWpoZxW.QRLSD0EHDcxXtIZ5.W', '2024-01-10 02:38:23');
 
 --

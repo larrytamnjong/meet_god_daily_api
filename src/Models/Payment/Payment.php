@@ -98,7 +98,7 @@ class Payment
         $statement->bindValue(':user_id', $user_id);
         $statement->bindValue(':year', $year);
         $statement->execute();
-
+      
         $payments = $statement->fetchAll(\PDO::FETCH_ASSOC);
         
         return $payments;
