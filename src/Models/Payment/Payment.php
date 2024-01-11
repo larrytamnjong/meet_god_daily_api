@@ -6,6 +6,7 @@ use App\Models\User\User;
 use App\Configuration\Database;
 use App\Commons\PaymentProcessor;
 use App\Configuration\Settings;
+use App\Commons\TransactionReference;
 
 error_reporting(E_ALL);
 ini_set('display_error', 1);
@@ -19,6 +20,7 @@ class Payment
   private $table = 'payments';
   private $payment_processor;
   private $settings;
+  private $transaction_reference;
   private $user;
 
 
@@ -35,6 +37,7 @@ class Payment
   public function __construct()
   {
     $database = new Database();
+    $this->transaction_reference = new TransactionReference();
     $this->user = new User();
     $this->settings = new Settings();
 
@@ -54,7 +57,7 @@ class Payment
       "amount" => $this->settings->get_setting('amount'),
       "currency" => "XAF",
       "email" => $user_information['email'],
-      "tx_ref" => "BJUYU3998fcdsd4ds9"
+      "tx_ref" => $this->transaction_reference->generate_reference()
     );
 
     $payment = $this->payment_processor->initiate_payment();
@@ -98,7 +101,7 @@ class Payment
         $statement->bindValue(':user_id', $user_id);
         $statement->bindValue(':year', $year);
         $statement->execute();
-      
+
         $payments = $statement->fetchAll(\PDO::FETCH_ASSOC);
         
         return $payments;

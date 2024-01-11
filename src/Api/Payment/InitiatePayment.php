@@ -35,7 +35,7 @@ if(count($_POST))
     }else
     {
         http_response_code(505);
-        echo json_encode(array('message' => 'payment failure or cancelled'));
+        echo json_encode(array('message' => 'payment failure or payment cancelled'));
     }
 }
 

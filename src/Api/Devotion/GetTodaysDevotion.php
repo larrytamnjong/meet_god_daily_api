@@ -24,5 +24,5 @@ if($todays_devotion){
     echo json_encode($todays_devotion);
 }else{
     http_response_code(505);
-    echo json_encode(array("message" => "error in getting devotion"));
+    echo json_encode(array("message" => "error in getting devotion or no devotion found"));
 }
