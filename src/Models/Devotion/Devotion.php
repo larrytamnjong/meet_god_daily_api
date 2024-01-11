@@ -80,7 +80,10 @@ class Devotion
         }
     }
 
-    public function get_specific_devotion($devotion_date)
+    /**
+     * @param Fetches only devotions from yesterday
+     */
+    public function get_specific_devotion($devotion_date) 
     {
         try {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = DATE(:devotion_date) AND message_date <=  NOW() ';
