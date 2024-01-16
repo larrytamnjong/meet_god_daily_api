@@ -110,4 +110,20 @@ class Payment
         return []; 
     }
 }
+public function get_all_payments_for_user($user_id)
+{
+    try {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id';
+        $statement = $this->database_connection->prepare($query);
+        $statement->bindValue(':user_id', $user_id);
+        $statement->execute();
+
+        $payments = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $payments;
+    } catch (\PDOException $ex) {
+       echo $ex->getMessage();
+        return [];
+    }
+}
 }
