@@ -7,8 +7,8 @@ use App\Commons\Password;
 
 
 
-error_reporting(E_ALL);
-ini_set('display_error', 1);
+// error_reporting(E_ALL);
+// ini_set('display_error', 1);
 
 
 class User
@@ -60,7 +60,7 @@ class User
                 return false;
             }
         } catch (\PDOException $ex) {
-            echo $ex->getmessage();
+           // echo $ex->getmessage();
         }
     }
 

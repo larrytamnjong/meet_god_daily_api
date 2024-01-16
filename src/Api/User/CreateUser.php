@@ -11,17 +11,17 @@ require_once '../../../vendor/autoload.php';
 
 
 use App\Models\User\User;
+$request_body = @file_get_contents("php://input");
+$decoded_request_body = json_decode($request_body);
 
 $user = new User();
 
 
-if(count($_POST))
-{
     $user_details = [
-        'full_name' => $_POST['full_name'],
-        'phone' => $_POST['phone'],
-        'password' => $_POST['password'],
-        'email' => $_POST['email']
+        'full_name' => $decoded_request_body->full_name,
+        'phone' => $decoded_request_body->phone,
+        'password' => $decoded_request_body->password,
+        'email' => $decoded_request_body->email
     ];
     
     if($user->create_user($user_details))
@@ -32,4 +32,4 @@ if(count($_POST))
         http_response_code(500);
         echo json_encode(array("message" => 'user not created'));
     }
-}
+

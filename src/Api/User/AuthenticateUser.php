@@ -11,15 +11,17 @@ require_once '../../../vendor/autoload.php';
 
 
 use App\Models\User\User;
+$request_body = @file_get_contents("php://input");
+$decoded_request_body = json_decode($request_body);
+
 
 $user = new User();
 
 
-if(count($_POST))
-{
+
     $params = [
-        'phone' => $_POST['phone'],
-        'password' => $_POST['password']
+        'phone' => $decoded_request_body->phone,
+        'password' => $decoded_request_body->password,
     ];
     
     if($user->login_user($params))
@@ -30,4 +32,4 @@ if(count($_POST))
         http_response_code(404);
         echo json_encode(array("message" => 'access denied'));
     }
-}
+
