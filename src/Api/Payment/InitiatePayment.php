@@ -31,7 +31,7 @@ if(count($_POST))
     if($payment->initiate_payment($user))
     {
         http_response_code(200);
-        echo json_encode(array('message' => 'payment successful'));
+        echo json_encode(array('message' => 'payment in progress'));
     }else
     {
         http_response_code(505);
