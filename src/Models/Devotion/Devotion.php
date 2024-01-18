@@ -12,8 +12,9 @@ class Devotion
     private $table = 'devotions';
     private $billing;
 
-
+    private $id;
     private $bible_verse;
+    private $bible_verse_message;
     private $devotion_title;
     private $message_date;
     private $devotion_message;
@@ -45,8 +46,15 @@ class Devotion
                 $monthNumber = date('n', strtotime($devotion['message_date']));
                 $grouped_devotions[$monthNumber][] = [
                     'id' => $devotion['id'],
-                    'title' => $devotion['devotion_title'],
-                    'date' => $devotion['message_date'],
+                    'bible_verse' => $devotion['bible_verse'],
+                    'bible_verse_massage' => $devotion['bible_verse_massage'] ?? "",
+                    'devotion_title' => $devotion['devotion_title'],
+                    'message_date' => $devotion['message_date'],
+                    'devotion_prayer' => $devotion['devotion_prayer'],
+                    'devotion_writer' => $devotion['devotion_writer'],
+                    'creation_date' => $devotion['creation_date'],
+                    
+
                 ];
             }
 
