@@ -30,45 +30,71 @@ class Devotion
         $this->database_connection = $database->connect();
     }
 
-    public function get_past_devotion_by_month()
+    public function get_past_devotion_for_current_month()
     {
         try {
-            $current_datetime = date('Y-m-d');
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND message_date <  :current_datetime ORDER BY message_date ASC';
+            $currentDatetime = date('Y-m-d');
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND MONTH(message_date) = MONTH(:current_datetime) AND message_date < :current_datetime ORDER BY message_date ASC';
 
             $statement = $this->database_connection->prepare($query);
-            $statement->bindValue(':current_datetime', $current_datetime);
+            $statement->bindValue(':current_datetime', $currentDatetime);
             $statement->execute();
             $devotions = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-            $grouped_devotions = [];
-            foreach ($devotions as $devotion) {
-                $monthNumber = date('n', strtotime($devotion['message_date']));
-                $grouped_devotions[$monthNumber][] = [
-                    'id' => $devotion['id'],
-                    'bible_verse' => $devotion['bible_verse'],
-                    'bible_verse_massage' => $devotion['bible_verse_massage'] ?? "",
-                    'devotion_title' => $devotion['devotion_title'],
-                    'message_date' => $devotion['message_date'],
-                    'devotion_prayer' => $devotion['devotion_prayer'],
-                    'devotion_writer' => $devotion['devotion_writer'],
-                    'creation_date' => $devotion['creation_date'],
-                    
-
-                ];
-            }
-
-            return $grouped_devotions;
+            return $devotions;
         } catch (\PDOException $ex) {
             echo $ex->getMessage();
             return false;
         }
     }
 
+
+    public function get_past_devotion_by_month()
+    {
+        try {
+            $currentDatetime = date('Y-m-d');
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND MONTH(message_date) = MONTH(:current_datetime) AND message_date < :current_datetime ORDER BY message_date ASC';
+    
+            $statement = $this->database_connection->prepare($query);
+            $statement->bindValue(':current_datetime', $currentDatetime);
+            $statement->execute();
+            $devotions = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    
+            $groupedDevotions = [];
+            foreach ($devotions as $devotion) {
+                $month = date('F', strtotime($devotion['message_date']));
+                $groupedDevotions[$month][] = [
+                    'id' => $devotion['id'],
+                    'bible_verse' => $devotion['bible_verse'],
+                    'bible_verse_message' => $devotion['bible_verse_message'] ?? "",
+                    'devotion_title' => $devotion['devotion_title'],
+                    'message_date' => $devotion['message_date'],
+                    'devotion_prayer' => $devotion['devotion_prayer'],
+                    'devotion_writer' => $devotion['devotion_writer'],
+                    'creation_date' => $devotion['creation_date'],
+                    'devotion_message' => $devotion['devotion_message']
+                ];
+            }
+    
+            return $groupedDevotions;
+        } catch (\PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
     public function get_todays_devotion($user_id)
     {
         $this->billing->user_id = $user_id;
-        
+
         if ($this->billing->can_access()) {
             try {
                 $today_datetime = date('Y-m-d');
@@ -91,7 +117,7 @@ class Devotion
     /**
      * @param Fetches only devotions from yesterday
      */
-    public function get_specific_devotion($devotion_date) 
+    public function get_specific_devotion($devotion_date)
     {
         try {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE DATE(message_date) = DATE(:devotion_date) AND message_date <=  NOW() ';

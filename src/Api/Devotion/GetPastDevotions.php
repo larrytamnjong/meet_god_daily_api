@@ -18,6 +18,7 @@ require_once '../../../vendor/autoload.php';
 
 $devotion = new Devotion();
 
+
 $past_devotions_by_month = $devotion->get_past_devotion_by_month();
 
 
