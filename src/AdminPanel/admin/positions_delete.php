@@ -3,16 +3,16 @@
 
 	if(isset($_POST['delete'])){
 		$id = $_POST['id'];
-		$sql = "DELETE FROM positions WHERE id = '$id'";
+		$sql = "DELETE FROM devotions WHERE id = '$id'";
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Position deleted successfully';
+			$_SESSION['success'] = 'Devotion deleted successfully';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
 		}
 	}
 	else{
-		$_SESSION['error'] = 'Select item to delete first';
+		$_SESSION['error'] = 'Select devotion to delete first';
 	}
 
 	header('location: positions.php');

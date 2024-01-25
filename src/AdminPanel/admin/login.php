@@ -6,11 +6,11 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM admin WHERE username = '$username'";
+		$sql = "SELECT * FROM users WHERE phone = '$username' AND user_type = 'admin'";
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find account with the username';
+			$_SESSION['error'] = 'Cannot find account with the phone';
 		}
 		else{
 			$row = $query->fetch_assoc();

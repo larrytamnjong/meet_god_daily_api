@@ -4,7 +4,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>V</b>TS</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Voting</b>System</span>
+    <span class="logo-lg"><b>Admin</b>Panel</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -19,7 +19,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="user-image" alt="User Image">
-            <span class="hidden-xs"><?php echo $user['firstname'].' '.$user['lastname']; ?></span>
+            <span class="hidden-xs"><?php echo $user['full_name']; ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -27,8 +27,8 @@
               <img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
 
               <p>
-                <?php echo $user['firstname'].' '.$user['lastname']; ?>
-                <small>Member since <?php echo date('M. Y', strtotime($user['created_on'])); ?></small>
+                <?php echo $user['full_name']; ?>
+                <small>Account created on <?php echo $user['creation_date']; ?></small>
               </p>
             </li>
             <li class="user-footer">

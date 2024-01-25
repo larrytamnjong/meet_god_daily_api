@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Positions
+        Devotions
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Positions</li>
+        <li class="active">Devotions</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -46,26 +46,30 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>  Add New Devotion</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
-                  <th>Description</th>
-                  <th>Maximum Vote</th>
+                  <th>Devotion Title</th>
+                  <th>Bible Verse</th>
+                  <th>Message date</th>
+                  <th>Devotion Writer</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM positions ORDER BY priority ASC";
+                    $sql = "SELECT * FROM devotions ORDER BY creation_date ASC";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
                           <td class='hidden'></td>
-                          <td>".$row['description']."</td>
-                          <td>".$row['max_vote']."</td>
+                          <td>".$row['devotion_title']."</td>
+                          <td>".$row['bible_verse']."</td>
+                          <td>".$row['message_date']."</td>
+                          <td>".$row['devotion_writer']."</td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
                             <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
@@ -113,9 +117,13 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       $('.id').val(response.id);
-      $('#edit_description').val(response.description);
-      $('#edit_max_vote').val(response.max_vote);
-      $('.description').html(response.description);
+      $('#edit_devotionTitle').val(response.devotion_title);
+      $('#edit_bibleVerse').val(response.bible_verse);
+      $('#edit_bibleVerseMessage').html(response.bible_verse_message);
+      $('#edit_devotionMessage').val(response.devotion_message);
+      $('#edit_devotionPrayer').val(response.devotion_prayer);
+      $('#edit_messageDate').val(response.message_date);
+      $('#edit_devotionWriter').val(response.devotion_writer);
     }
   });
 }

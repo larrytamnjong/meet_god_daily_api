@@ -7,7 +7,7 @@
         <img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p><?php echo $user['firstname'].' '.$user['lastname']; ?></p>
+        <p><?php echo $user['full_name']; ?></p>
         <a><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>

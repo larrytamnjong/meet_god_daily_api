@@ -8,7 +8,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   	<div class="login-logo">
-  		<b>Voting System</b>
+  		<b>Admin Panel</b>
   	</div>
   
   	<div class="login-box-body">
@@ -16,7 +16,7 @@
 
     	<form action="login.php" method="POST">
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control" name="username" placeholder="Username" required>
+        		<input type="text" class="form-control" name="username" placeholder="Phone" required>
         		<span class="glyphicon glyphicon-user form-control-feedback"></span>
       		</div>
           <div class="form-group has-feedback">
