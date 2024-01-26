@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Voters List
+        Users
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Voters</li>
+        <li class="active">Users</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -46,32 +46,37 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Add New User</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Lastname</th>
-                  <th>Firstname</th>
+                  <th>User Id</th>
+                  <th>Full Name</th>
+                  <th>Phone</th>
                   <th>Photo</th>
-                  <th>Voters ID</th>
+                  <th>Email</th>
+                  <th>User Type</th>
                   <th>Tools</th>
+                  
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM voters";
+                    $sql = "SELECT * FROM users";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/profile.jpg';
                       echo "
                         <tr>
-                          <td>".$row['lastname']."</td>
-                          <td>".$row['firstname']."</td>
+                        <td>".$row['id']."</td>
+                          <td>".$row['full_name']."</td>
+                          <td>".$row['phone']."</td>
                           <td>
                             <img src='".$image."' width='30px' height='30px'>
                             <a href='#edit_photo' data-toggle='modal' class='pull-right photo' data-id='".$row['id']."'><span class='fa fa-edit'></span></a>
                           </td>
-                          <td>".$row['voters_id']."</td>
+                          <td>".$row['email']."</td>
+                          <td>".$row['user_type']."</td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
                             <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
@@ -125,10 +130,12 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       $('.id').val(response.id);
-      $('#edit_firstname').val(response.firstname);
-      $('#edit_lastname').val(response.lastname);
+      $('#edit_fullName').val(response.full_name);
+      $('#edit_email').val(response.email);
       $('#edit_password').val(response.password);
-      $('.fullname').html(response.firstname+' '+response.lastname);
+      $('#edit_phone').val(response.phone);
+      $('#edit_userType').val(response.user_type);
+      
     }
   });
 }

@@ -3,9 +3,9 @@
 
 	if(isset($_POST['delete'])){
 		$id = $_POST['id'];
-		$sql = "DELETE FROM voters WHERE id = '$id'";
+		$sql = "DELETE FROM users WHERE id = '$id'";
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Voter deleted successfully';
+			$_SESSION['success'] = 'User deleted successfully';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
