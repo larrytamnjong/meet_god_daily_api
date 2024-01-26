@@ -88,7 +88,7 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/positions_modal.php'; ?>
+  <?php include 'includes/devotions_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
 <script>
@@ -112,7 +112,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'positions_row.php',
+    url: 'devotions_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

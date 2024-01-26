@@ -31,5 +31,5 @@
 		$_SESSION['error'] = 'Fill up add form first';
 	}
 
-	header('location: positions.php');
+	header('location: devotions.php');
 ?>

@@ -8,7 +8,7 @@
         <h4 class="modal-title"><b>Add New Devotion</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="positions_add.php">
+        <form class="form-horizontal" method="POST" action="devotions_add.php">
           <div class="form-group">
             <label for="devotionTitle" class="col-sm-3 control-label">Devotion Title</label>
             <div class="col-sm-9">
@@ -71,7 +71,7 @@
         <h4 class="modal-title"><b>Edit Devotion</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="positions_edit.php">
+        <form class="form-horizontal" method="POST" action="devotions_edit.php">
           <input type="hidden" class="id" name="id">
           <div class="form-group">
             <label for="edit_devotionTitle" class="col-sm-3 control-label">Devotion Title</label>
@@ -136,7 +136,7 @@
         <h4 class="modal-title"><b>Are you sure you want to delete this devotion?</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="positions_delete.php">
+        <form class="form-horizontal" method="POST" action="devotions_delete.php">
           <input type="hidden" class="id" name="id">
           <div class="text-center">
             <p>Delete Devotion</p>

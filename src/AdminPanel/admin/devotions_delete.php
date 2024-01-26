@@ -15,6 +15,6 @@
 		$_SESSION['error'] = 'Select devotion to delete first';
 	}
 
-	header('location: positions.php');
+	header('location: devotions.php');
 	
 ?>
