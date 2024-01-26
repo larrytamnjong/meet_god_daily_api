@@ -22,9 +22,7 @@
       <li class=""><a href="payments.php"><i class="fa fa-credit-card"></i> <span>Payments</span></a></li>
       <li class="header">SETTINGS</li>
       <li class=""><a href="settings.php"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
-      <li class=""><a href="ballot.php"><i class="fa fa-file-text"></i> <span>Others</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->
 </aside>
-<?php include 'config_modal.php'; ?>
