@@ -13,7 +13,7 @@
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">DASHBOARD</li>
+      <li class="header">HOME</li>
       <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="header">MANAGE</li>
       <li class=""><a href="devotions.php"><i class="fa fa-tasks"></i> <span>Devotions</span></a></li>
