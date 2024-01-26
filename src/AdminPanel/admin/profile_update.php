@@ -14,7 +14,6 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$firstname = $_POST['firstname'];
-		// $lastname = $_POST['lastname'];
 		$photo = $_FILES['photo']['name'];
 		if(password_verify($curr_password, $user['password'])){
 			if(!empty($photo)){
