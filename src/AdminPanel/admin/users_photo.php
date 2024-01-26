@@ -18,8 +18,8 @@
 
 	}
 	else{
-		$_SESSION['error'] = 'Select voter to update photo first';
+		$_SESSION['error'] = 'Select user to update photo first';
 	}
 
-	header('location: voters.php');
+	header('location: users.php');
 ?>

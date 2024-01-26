@@ -95,7 +95,7 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/voters_modal.php'; ?>
+  <?php include 'includes/users_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
 <script>
@@ -125,7 +125,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'voters_row.php',
+    url: 'users_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

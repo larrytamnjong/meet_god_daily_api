@@ -8,7 +8,7 @@
         <h4 class="modal-title"><b>Add New User</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="voters_add.php" enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action="users_add.php" enctype="multipart/form-data">
           <div class="form-group">
             <label for="fullName" class="col-sm-3 control-label">Full Name</label>
 
@@ -73,7 +73,7 @@
         <h4 class="modal-title"><b>Edit User</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="voters_edit.php">
+        <form class="form-horizontal" method="POST" action="users_edit.php">
           <input type="hidden" class="id" name="id">
           <div class="form-group">
             <label for="edit_fullName" class="col-sm-3 control-label">Full Name</label>
@@ -132,7 +132,7 @@
         <h4 class="modal-title"><b>Delete User</b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="voters_delete.php">
+        <form class="form-horizontal" method="POST" action="users_delete.php">
           <input type="hidden" class="id" name="id">
           <div class="text-center">
             <p>DELETE USER</p>
@@ -158,7 +158,7 @@
         <h4 class="modal-title"><b><span class="fullname"></span></b></h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="voters_photo.php" enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action="users_photo.php" enctype="multipart/form-data">
           <input type="hidden" class="id" name="id">
           <div class="form-group">
             <label for="photo" class="col-sm-3 control-label">Photo</label>
