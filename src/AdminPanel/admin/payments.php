@@ -101,7 +101,7 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/candidates_modal.php'; ?>
+  <?php include 'includes/payments_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
 <script>
@@ -137,7 +137,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'candidates_row.php',
+    url: 'payments_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

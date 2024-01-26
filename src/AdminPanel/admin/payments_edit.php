@@ -6,7 +6,7 @@
 		$status = $_POST['status'];
 		
 
-		$sql = "UPDATE payments SET status = '$status' WHERE id = '$id'";
+		$sql = "UPDATE payments SET status = '$status', completion_date = NOW() WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Payment Status updated successfully';
 		}
@@ -18,6 +18,6 @@
 		$_SESSION['error'] = 'Fill up edit form first';
 	}
 
-	header('location: candidates.php');
+	header('location: payments.php');
 
 ?>
