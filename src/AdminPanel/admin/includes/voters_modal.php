@@ -41,8 +41,8 @@
             <label for="userType" class="col-sm-3 control-label">User Type</label>
             <div class="col-sm-9">
               <select class="form-control" id="userType" name="userType" required>
-                <option value="user">user</option>
-                <option value="admin">admin</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
           </div>
@@ -107,8 +107,8 @@
             <label for="edit_userType" class="col-sm-3 control-label">User Type</label>
             <div class="col-sm-9">
               <select class="form-control" id="edit_userType" name="userType" required>
-                <option value="user">user</option>
-                <option value="admin">admin</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
           </div>

@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Candidates List
+        Payments
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Candidates</li>
+        <li class="active">Payments</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -45,40 +45,47 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
-            </div>
+            <!-- <div class="box-header with-border">
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>Add New Payment</a>
+            </div> -->
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
-                  <th>Position</th>
+                  <th>Payment Id</th>
+                  <th>Name</th>
                   <th>Photo</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Platform</th>
+                  <th>Email</th>
+                  <th>Reference</th>
+                  <th>Amount (XAF)</th>
+                  <th>Status</th>
+                  <th>Details</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, candidates.id AS canid FROM candidates LEFT JOIN positions ON positions.id=candidates.position_id ORDER BY positions.priority ASC";
+                   $sql = "SELECT payments.id AS id, users.full_name, users.email, payments.tx_ref, payments.amount, payments.status
+                   FROM payments 
+                   LEFT JOIN users ON users.id = payments.user_id 
+                   ORDER BY payments.creation_date ASC";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/profile.jpg';
                       echo "
                         <tr>
-                          <td class='hidden'></td>
-                          <td>".$row['description']."</td>
+                        <td class='hidden'></td>
+                          <td>".$row['id']."</td>
+                          <td>".$row['full_name']."</td>
                           <td>
                             <img src='".$image."' width='30px' height='30px'>
-                            <a href='#edit_photo' data-toggle='modal' class='pull-right photo' data-id='".$row['canid']."'><span class='fa fa-edit'></span></a>
                           </td>
-                          <td>".$row['firstname']."</td>
-                          <td>".$row['lastname']."</td>
-                          <td><a href='#platform' data-toggle='modal' class='btn btn-info btn-sm btn-flat platform' data-id='".$row['canid']."'><i class='fa fa-search'></i> View</a></td>
+                          <td>".$row['email']."</td>
+                          <td>".$row['tx_ref']."</td>  
+                          <td>".$row['amount']."</td>
+                          <td>".ucfirst($row['status'])."</td>
+                          <td><a href='#platform' data-toggle='modal' class='btn btn-info btn-sm btn-flat platform' data-id='".$row['id']."'><i class='fa fa-search'></i> View</a></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['canid']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['canid']."'><i class='fa fa-trash'></i> Delete</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit Status</button>
                           </td>
                         </tr>
                       ";
@@ -134,13 +141,12 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('.id').val(response.canid);
-      $('#edit_firstname').val(response.firstname);
-      $('#edit_lastname').val(response.lastname);
-      $('#posselect').val(response.position_id).html(response.description);      
-      $('#edit_platform').val(response.platform);
-      $('.fullname').html(response.firstname+' '+response.lastname);
-      $('#desc').html(response.platform);
+      $('.id').val(response.id);
+      $('.fullName').html(response.full_name);
+      $('#txRef').html(response.tx_ref);
+      $('#creationDate').html(response.creation_date);
+      $('#completionDate').html(response.completion_date);
+      $('#edit_status').val(response.status);
     }
   });
 }

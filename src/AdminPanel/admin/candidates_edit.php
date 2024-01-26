@@ -3,14 +3,12 @@
 
 	if(isset($_POST['edit'])){
 		$id = $_POST['id'];
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$position = $_POST['position'];
-		$platform = $_POST['platform'];
+		$status = $_POST['status'];
+		
 
-		$sql = "UPDATE candidates SET firstname = '$firstname', lastname = '$lastname', position_id = '$position', platform = '$platform' WHERE id = '$id'";
+		$sql = "UPDATE payments SET status = '$status' WHERE id = '$id'";
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Candidate updated successfully';
+			$_SESSION['success'] = 'Payment Status updated successfully';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
