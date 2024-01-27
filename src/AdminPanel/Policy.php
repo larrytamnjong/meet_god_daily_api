@@ -44,11 +44,10 @@
     <h2>1. Acceptance of Terms</h2>
     <p>By accessing and using this website, you agree to be bound by these terms and conditions.</p>
 
-    <!-- ... (rest of the content) ... -->
 
     <h2>8. Contact Information</h2>
     <p>If you have any questions about these terms and conditions, please contact us at <a href="mailto:info@example.com">info@example.com</a>.</p>
 
-    <p>Last Updated: January 26, 2024</p>
+    <p>Last Updated: January 27, 2024</p>
 </body>
 </html>
