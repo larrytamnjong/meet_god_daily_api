@@ -129,4 +129,32 @@ class User
             return false;
         }
     }
+
+    public function otp_login($phone){
+        $this->phone = $phone;
+        try {
+
+            $query = 'SELECT id, full_name, phone, email, creation_date  FROM ' . $this->table . ' WHERE phone = :phone';
+            $statement = $this->database_connection->prepare($query);
+            $statement->bindValue('phone', $this->phone);
+            $statement->execute();
+            $user = $statement->fetch(\PDO::FETCH_ASSOC);
+
+            if ($user) {
+                return [
+                    'id' => $user['id'],
+                    'full_name' => $user['full_name'],
+                    'phone' => $user['phone'],
+                    'email' => $user['email'],
+                    'creation_date' => $user['creation_date']
+                ];
+               
+            } else {
+                return false;
+            }
+        } catch (\PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
+    }
 }
