@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 22, 2024 at 11:14 AM
+-- Generation Time: Jan 27, 2024 at 12:55 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.2.0
 
@@ -39,16 +39,16 @@ CREATE TABLE IF NOT EXISTS `devotions` (
   `devotion_writer` varchar(200) NOT NULL,
   `creation_date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `devotions`
 --
 
 INSERT INTO `devotions` (`id`, `bible_verse`, `bible_verse_message`, `devotion_title`, `message_date`, `devotion_message`, `devotion_prayer`, `devotion_writer`, `creation_date`) VALUES
-(1, 'Lorem ipsum', '', 'Lorem ipsum Lorem ipsum.', '2024-01-10 00:00:00', 'Saepe amet quibusdam velit vitae. Harum sequi quo quo distinctio. Dolor delectus nam beatae qui blanditiis mollitia magnam.\r\nRecusandae incidunt possimus esse deserunt neque fuga eum sed. Officiis iure atque. Culpa illum voluptate aperiam.\r\nAliquid incidunt pariatur possimus voluptatibus inventore vel dolorem. Maxime harum labore illo ullam illo est. Provident officiis maiores.', 'Eligendi odit similique nam corporis eligendi distinctio voluptates amet. Reprehenderit ab fugit. Quis labore distinctio cupiditate nesciunt saepe eos.', 'Rupert Sauer', '2024-01-10 19:04:00'),
-(2, 'Lorem ipsum', '', 'Lorem ipsum dolor sit.', '2024-01-18 00:00:00', 'Aut porro sit. Excepturi repellendus animi ex incidunt earum quasi quisquam architecto. Dolor voluptates amet voluptas rerum quae repellendus doloribus libero.\r\nEnim quaerat placeat nihil nisi suscipit quo. Excepturi veniam iure voluptatem. Necessitatibus laboriosam eaque veritatis repudiandae.\r\nAutem mollitia deleniti iste quis. Consequatur aperiam nostrum porro. Soluta quisquam repellendus possimus suscipit amet explicabo labore.', 'Fugit quisquam mollitia modi architecto sint. Molestiae fugiat enim mollitia quod natus. Deserunt debitis ullam enim sint harum minima odit.', 'Cayla Swift', '2024-01-19 02:45:52'),
-(3, 'Lorem ipsum dolor sit.', 'Lorem ipsum dolor sit amet consectetur adipiscing elit class cum ut himenaeos suspendisse curae urna taciti commodo suscipit vitae, tempor lobortis justo dictumst penatibus non viverra condimentum ante ', 'Lorem ipsum dolor sit.', '2024-01-21 10:01:03', 'Lorem ipsum dolor sit amet consectetur adipiscing elit class cum ut himenaeos suspendisse curae urna taciti commodo suscipit vitae, tempor lobortis justo dictumst penatibus non viverra condimentum ante imperdiet mattis aliquet litora cubilia a ridiculus. Nulla neque etiam vestibulum odio eros in aenean, bibendum nisi ut natoque orci mollis tincidunt, quisque iaculis pellentesque nascetur eleifend sed. Sagittis taciti sodales ac eros litora cursus quisque morbi commodo viverra, tristique fames magna rhoncus parturient iaculis himenaeos ornare ligula etiam pellentesque, enim justo vivamus vehicula nulla senectus elementum nunc ad. Vel nam fermentum bibendum blandit ullamcorper vitae a, in quis sapien tempor augue proin etiam nibh, at ornare praesent quisque porta dis. Ultrices nascetur cursus aenean nulla eros porttitor torquent feugiat dignissim, imperdiet vehicula pretium leo ante natoque euismod non molestie, arcu auctor vulputate in ridiculus sem platea eleifend. Tristique nulla penatibus facilisis scelerisque natoque posuere nascetur, himenaeos imperdiet augue malesuada dui felis netus, aenean pulvinar senectus mollis quisque placerat. Vitae litora torquent eleifend mattis potenti odio parturient, etiam eget lectus vel nulla blandit rhoncus, mi elementum tincidunt imperdiet consequat nec.\n\nLuctus odio volutpat malesuada conubia urna, eu netus metus purus porta, augue hac cum est. Scelerisque quisque erat nam auctor nisi malesuada porttitor urna, sodales ridiculus aptent taciti cursus hendrerit interdum commodo, ligula ullamcorper ultrices aliquam vitae parturient vel. Litora faucibus diam lacus duis eros netus pretium orci enim himenaeos risus nisl, dui aliquam nec eleifend eu semper tempor justo porta torquent. Aliquet montes velit venenatis nulla rutrum neque vivamus nam metus posuere, odio cum turpis eros mauris condimentum nibh pharetra vitae. Nascetur dis sed nibh sapien turpis nam dui eu aliquet orci, habitant nunc a facilisis parturient velit ullamcorper volutpat purus, enim arcu malesuada curabitur dictumst pellentesque phasellus torquent posuere. Mi commodo erat vitae dui mollis proin, platea suspendisse dictum vestibulum fermentum auctor, ullamcorper praesent euismod eget facilisi inceptos, aptent maecenas donec nostra odio. Tellus commodo erat taciti congue platea nec pretium fringilla, felis malesuada elementum magnis dictumst quis phasellus vel, cras eros mauris eget metus aptent habitasse.', 'Tellus commodo erat taciti congue platea nec pretium fringilla, felis malesuada elementum magnis dictumst quis phasellus vel, cras eros mauris eget metus aptent habitasse.', 'German Blick', '2024-01-21 12:17:07');
+(3, 'Lorem ipsum dolor sit.', 'Lorem ipsum dolor sit amet consectetur adipiscing elit class cum ut himenaeos suspendisse curae urna taciti commodo suscipit vitae, tempor lobortis justo dictumst penatibus non viverra condimentum ante ', 'Lorem ipsum dolor sit.', '2024-01-21 10:01:03', 'Lorem ipsum dolor sit amet consectetur adipiscing elit class cum ut himenaeos suspendisse curae urna taciti commodo suscipit vitae, tempor lobortis justo dictumst penatibus non viverra condimentum ante imperdiet mattis aliquet litora cubilia a ridiculus. Nulla neque etiam vestibulum odio eros in aenean, bibendum nisi ut natoque orci mollis tincidunt, quisque iaculis pellentesque nascetur eleifend sed. Sagittis taciti sodales ac eros litora cursus quisque morbi commodo viverra, tristique fames magna rhoncus parturient iaculis himenaeos ornare ligula etiam pellentesque, enim justo vivamus vehicula nulla senectus elementum nunc ad. Vel nam fermentum bibendum blandit ullamcorper vitae a, in quis sapien tempor augue proin etiam nibh, at ornare praesent quisque porta dis. Ultrices nascetur cursus aenean nulla eros porttitor torquent feugiat dignissim, imperdiet vehicula pretium leo ante natoque euismod non molestie, arcu auctor vulputate in ridiculus sem platea eleifend. Tristique nulla penatibus facilisis scelerisque natoque posuere nascetur, himenaeos imperdiet augue malesuada dui felis netus, aenean pulvinar senectus mollis quisque placerat. Vitae litora torquent eleifend mattis potenti odio parturient, etiam eget lectus vel nulla blandit rhoncus, mi elementum tincidunt imperdiet consequat nec.\n\nLuctus odio volutpat malesuada conubia urna, eu netus metus purus porta, augue hac cum est. Scelerisque quisque erat nam auctor nisi malesuada porttitor urna, sodales ridiculus aptent taciti cursus hendrerit interdum commodo, ligula ullamcorper ultrices aliquam vitae parturient vel. Litora faucibus diam lacus duis eros netus pretium orci enim himenaeos risus nisl, dui aliquam nec eleifend eu semper tempor justo porta torquent. Aliquet montes velit venenatis nulla rutrum neque vivamus nam metus posuere, odio cum turpis eros mauris condimentum nibh pharetra vitae. Nascetur dis sed nibh sapien turpis nam dui eu aliquet orci, habitant nunc a facilisis parturient velit ullamcorper volutpat purus, enim arcu malesuada curabitur dictumst pellentesque phasellus torquent posuere. Mi commodo erat vitae dui mollis proin, platea suspendisse dictum vestibulum fermentum auctor, ullamcorper praesent euismod eget facilisi inceptos, aptent maecenas donec nostra odio. Tellus commodo erat taciti congue platea nec pretium fringilla, felis malesuada elementum magnis dictumst quis phasellus vel, cras eros mauris eget metus aptent habitasse.', 'Tellus commodo erat taciti congue platea nec pretium fringilla, felis malesuada elementum magnis dictumst quis phasellus vel, cras eros mauris eget metus aptent habitasse.', 'German Blick', '2024-01-21 12:17:07'),
+(8, 'Vitae voluptatum voluptates eos fugiat vero similique beatae.', 'Dolores nisi laudantium quaerat.', 'Global Program Executive', '2023-06-26 22:39:00', 'Tenetur deleniti adipisci ad reprehenderit distinctio natus minus corrupti. Omnis illum fugiat illo sit. Ipsa ea odit modi quos accusamus distinctio.', 'Quam id maiores nobis iure odit placeat adipisci laborum.', 'Trinity Brakus', '2024-01-25 18:20:00'),
+(9, 'Libero incidunt laboriosam perspiciatis nobis doloremque illo architecto.', 'Amet consectetur animi molestias dignissimos occaecati est. Quaerat labore quam id sunt odio. Dolorem esse fuga nobis veritatis explicabo veniam voluptatibus culpa.', 'Customer Tactics Manager', '2023-12-18 07:22:00', 'Ullam facilis aut temporibus quia maxime iste. Doloremque molestias molestiae veritatis. Cumque nihil ad sed reprehenderit tenetur tempore fugit doloremque magnam.', 'Adipisci ratione harum eius architecto doloribus alias voluptatum rerum.', 'Paris Reinger', '2024-01-26 14:18:48');
 
 -- --------------------------------------------------------
 
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `payments` (
 --
 
 INSERT INTO `payments` (`id`, `user_id`, `tx_ref`, `amount`, `status`, `creation_date`, `completion_date`) VALUES
-(1, 7, 'BJUYU3998fcdsd4ds903', 2000, 'pending', '2024-01-10 02:14:32', NULL),
-(2, 7, 'BJUYU3998fcdsd4ds903', 2000, 'pending', '2024-01-10 02:23:13', NULL),
-(3, 7, 'BJUYU3998fcdsd4ds9', 2000, 'pending', '2024-01-10 02:33:02', '2024-12-11 20:48:22'),
+(1, 7, 'BJUYU3998fcdsd4ds903', 2000, 'pending', '2024-01-10 02:14:32', '2024-01-26 18:04:18'),
+(2, 7, 'BJUYU3998fcdsd4ds903', 2000, 'complete', '2024-01-10 02:23:13', NULL),
+(3, 7, 'BJUYU3998fcdsd4ds9', 2000, 'complete', '2024-01-10 02:33:02', '2024-12-11 20:48:22'),
 (4, 7, 'BJUYU3998fcdsd4ds9', 2000, 'pending', '2024-01-10 06:56:31', NULL);
 
 -- --------------------------------------------------------
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (1, 'amount', '2000'),
 (2, 'secret_key', 'FLWSECK_TEST-ef619bc1273084a11e2f8c970512729d-X'),
-(3, 'bonus_days', '2');
+(3, 'bonus_days', '3');
 
 -- --------------------------------------------------------
 
@@ -116,18 +116,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(200) NOT NULL,
   `password` varchar(300) NOT NULL,
   `user_type` varchar(10) DEFAULT 'user',
+  `photo` varchar(300) NOT NULL,
   `creation_date` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `phone`, `email`, `password`, `user_type`, `creation_date`) VALUES
-(7, 'John Doe', '680162416', 'larrytabeh@gmail.com', '$2y$10$BSPgwFJup2pXj6h/5TO9F.ZEUVEymkd96iYtTUU3xtdAwk1UvUEZy', 'user', '2024-01-01 17:04:27'),
-(35, 'Tamnjong Larry', '693536875', 'larrytamnjong@gmail.com', '$2y$10$pEs5SoqM37NYhm/nRbiBmuc1fMgJ9za4rnRtWKhoCQ4yQPeljaxaO', 'user', '2024-01-21 12:29:51');
+INSERT INTO `users` (`id`, `full_name`, `phone`, `email`, `password`, `user_type`, `photo`, `creation_date`) VALUES
+(7, 'Tamnjong', '680162416', 'larrytabeh@gmail.com', '$2y$10$Hq7nGKRZ2kKPAUYekZsRTevOnklhjsbixpxguPC295Y3NbhLeVjdC', 'admin', 'profile.png', '2024-01-01 17:04:27'),
+(35, 'Tamnjong Larry', '693536875', 'larrytamnjong@gmail.com', '$2y$10$pEs5SoqM37NYhm/nRbiBmuc1fMgJ9za4rnRtWKhoCQ4yQPeljaxaO', 'user', '', '2024-01-21 12:29:51'),
+(36, 'Walker Beer', '088-007-1122', 'your.email+fakedata31794@gmail.com', '$2y$10$dx0cD/aVHoewlRsY91A2Q.ZkK0NEMwbJP8nOfTmgop6qxLbOkfjq.', 'user', '', '2024-01-25 18:47:57');
 
 --
 -- Constraints for dumped tables
