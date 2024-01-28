@@ -57,6 +57,7 @@
                   <th>Photo</th>
                   <th>Email</th>
                   <th>Reference</th>
+                  <th>Creation Date</th>
                   <th>Amount (XAF)</th>
                   <th>Status</th>
                   <th>Details</th>
@@ -64,7 +65,7 @@
                 </thead>
                 <tbody>
                   <?php
-                   $sql = "SELECT payments.id AS id, users.full_name, users.email, payments.tx_ref, payments.amount, payments.status
+                   $sql = "SELECT payments.id AS id, users.full_name, users.email, payments.tx_ref, payments.amount, payments.status, payments.creation_date
                    FROM payments 
                    LEFT JOIN users ON users.id = payments.user_id 
                    ORDER BY payments.creation_date ASC";
@@ -81,6 +82,7 @@
                           </td>
                           <td>".$row['email']."</td>
                           <td>".$row['tx_ref']."</td>  
+                          <td>".$row['creation_date']."</td>
                           <td>".$row['amount']."</td>
                           <td>".ucfirst($row['status'])."</td>
                           <td><a href='#platform' data-toggle='modal' class='btn btn-info btn-sm btn-flat platform' data-id='".$row['id']."'><i class='fa fa-search'></i> View</a></td>

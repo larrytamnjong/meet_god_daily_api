@@ -6,7 +6,7 @@
 		$status = $_POST['status'];
 		
 
-		$sql = "UPDATE payments SET status = '$status', completion_date = NOW() WHERE id = '$id'";
+		$sql = $status == "complete" ? "UPDATE payments SET status = '$status', completion_date = NOW() WHERE id = '$id'" : "UPDATE payments SET status = '$status', completion_date = null WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Payment Status updated successfully';
 		}
