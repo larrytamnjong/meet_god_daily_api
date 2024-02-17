@@ -124,6 +124,7 @@ function getRow(id){
       $('#edit_devotionPrayer').val(response.devotion_prayer);
       $('#edit_messageDate').val(response.message_date);
       $('#edit_devotionWriter').val(response.devotion_writer);
+      $('#edit_prayerPoint').val(response.prayer_point);
     }
   });
 }

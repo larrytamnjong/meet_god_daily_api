@@ -21,6 +21,7 @@ class Devotion
     private $devotion_prayer;
     private $devotion_writer;
     private $creation_date;
+    private $prayer_point;
 
 
     public function __construct()
@@ -53,7 +54,7 @@ class Devotion
     {
         try {
             $currentDatetime = date('Y-m-d');
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND MONTH(message_date) = MONTH(:current_datetime) AND message_date < :current_datetime ORDER BY message_date ASC';
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE YEAR(message_date) = YEAR(:current_datetime) AND message_date < :current_datetime ORDER BY message_date ASC';
     
             $statement = $this->database_connection->prepare($query);
             $statement->bindValue(':current_datetime', $currentDatetime);
@@ -72,7 +73,8 @@ class Devotion
                     'devotion_prayer' => $devotion['devotion_prayer'],
                     'devotion_writer' => $devotion['devotion_writer'],
                     'creation_date' => $devotion['creation_date'],
-                    'devotion_message' => $devotion['devotion_message']
+                    'devotion_message' => $devotion['devotion_message'],
+                    'prayer_point' => $devotion['prayer_point']
                 ];
             }
     

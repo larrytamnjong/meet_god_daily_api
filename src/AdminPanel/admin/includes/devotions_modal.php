@@ -40,17 +40,23 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="prayerPoint" class="col-sm-3 control-label">CBC Prayer Point</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" rows="4" id="prayerPoint" name="prayerPoint"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="messageDate" class="col-sm-3 control-label">Message Date</label>
             <div class="col-sm-9">
               <input type="datetime-local" class="form-control" id="messageDate" name="messageDate" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="devotionWriter" class="col-sm-3 control-label">Devotion Writer</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="devotionWriter" name="devotionWriter" required>
-            </div>
-          </div>
+    <label for="devotionWriter" class="col-sm-3 control-label">Devotion Writer</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="devotionWriter" name="devotionWriter" required value="TCED CBC">
+        </div>
+    </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -101,6 +107,12 @@
             <label for="edit_devotionPrayer" class="col-sm-3 control-label">Devotion Prayer</label>
             <div class="col-sm-9">
               <textarea class="form-control" rows="4" id="edit_devotionPrayer" name="devotionPrayer" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prayerPoint" class="col-sm-3 control-label">Pray for the CBC</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" rows="4" id="edit_prayerPoint" name="prayerPoint"></textarea>
             </div>
           </div>
           <div class="form-group">
